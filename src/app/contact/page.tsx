@@ -8,7 +8,7 @@ export default function Contact() {
             Get in Touch
           </h1>
           <p className="text-xl text-gray-600 leading-relaxed">
-            Ready to transform your healthcare practice? Let's talk.
+            Ready to transform your healthcare practice? {"Let's"} talk.
           </p>
         </div>
       </section>
@@ -21,13 +21,13 @@ export default function Contact() {
             <div className="space-y-8">
               <div>
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                  Let's Build Something Together
+                  Let us Build Something Great
                 </h2>
                 <p className="text-gray-600 mb-8 leading-relaxed">
-                  Whether you're a doctor interested in 3yadti, a healthcare
+                  Whether you are a doctor interested in 3yadti, a healthcare
                   institution looking for custom solutions, or an investor
-                  interested in Egyptian healthcare technology, I'd love to hear
-                  from you.
+                  interested in Egyptian healthcare technology, I would love to
+                  hear from you.
                 </p>
               </div>
 

@@ -8,7 +8,7 @@ export default function About() {
             About Shifaa Technologies
           </h1>
           <p className="text-xl text-gray-600 leading-relaxed">
-            We're building the future of healthcare technology in Egypt, one
+            We are building the future of healthcare technology in Egypt, one
             clinic at a time.
           </p>
         </div>
@@ -24,7 +24,7 @@ export default function About() {
             <p className="text-gray-600 mb-8 text-lg leading-relaxed">
               Healthcare in Egypt faces unique challenges: inconsistent internet
               connectivity, language barriers in medical software, and systems
-              built for Western markets that don't fit local workflows. We're
+              built for Western markets that do not fit local workflows. We are
               here to change that.
             </p>
 
@@ -74,16 +74,16 @@ export default function About() {
             <h2 className="text-3xl font-bold text-gray-900 mb-6">Our Story</h2>
             <p className="text-gray-600 mb-6 text-lg leading-relaxed">
               Shifaa Technologies was founded to solve a simple problem:
-              existing healthcare software doesn't work well in Egypt. Whether
-              it's language barriers, connectivity issues, or workflows that
-              don't match how Egyptian clinics actually operate, doctors were
+              existing healthcare software does not work well in Egypt. Whether
+              it is language barriers, connectivity issues, or workflows that do
+              not match how Egyptian clinics actually operate, doctors were
               struggling with tools that made their jobs harder, not easier.
             </p>
             <p className="text-gray-600 text-lg leading-relaxed">
               Our first product, 3yadti, is a clinic management system that
               works 100% offline, supports Arabic natively, and is designed
-              specifically for Egyptian general practitioners. It's currently in
-              beta and being used by doctors across Egypt.
+              specifically for Egyptian general practitioners. It is currently
+              in beta and being used by doctors across Egypt.
             </p>
           </div>
         </div>
