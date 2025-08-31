@@ -50,7 +50,9 @@ export default function Contact() {
                     </svg>
                   </div>
                   <div>
-                    <h3 className="text-xl font-bold text-gray-900">Mohamed</h3>
+                    <h3 className="text-xl font-bold text-gray-900">
+                      Mohamed Kotb
+                    </h3>
                     <p className="text-gray-600">Founder & CEO</p>
                   </div>
                 </div>
