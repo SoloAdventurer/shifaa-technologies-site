@@ -8,8 +8,7 @@ export default function About() {
             About Shifaa Technologies
           </h1>
           <p className="text-xl text-gray-600 leading-relaxed">
-            We are building the future of healthcare technology in Egypt, one
-            clinic at a time.
+            We are building the future of healthcare technology in Egypt.
           </p>
         </div>
       </section>
