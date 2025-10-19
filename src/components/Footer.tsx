@@ -115,7 +115,7 @@ export default function Footer() {
             {/* Social Links (Optional) */}
             <div className="flex space-x-3">
               <a
-                href="#"
+                href="https://x.com/3yadti"
                 className="text-gray-400 hover:text-white transition-colors"
               >
                 <svg
@@ -127,7 +127,7 @@ export default function Footer() {
                 </svg>
               </a>
               <a
-                href="https://x.com/3yadti"
+                href="https://www.linkedin.com/company/shifaa-technologies/"
                 className="text-gray-400 hover:text-white transition-colors"
               >
                 <svg
