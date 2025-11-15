@@ -43,10 +43,12 @@ export default function Home() {
               link="#"
               primaryProduct={false}
             />
-            <p className=" text-sm text-yellow-700 bg-yellow-100 p-3 rounded-lg">
+            <p className="text-sm text-yellow-700 bg-yellow-100 p-2 rounded-lg">
               <strong>Beta Disclaimer:</strong> This is a trial version for
               feedback. Please use with caution and maintain external backups of
-              all critical data.
+              all critical data. Also write all patient data in English in case
+              you intend to Export into PDFs. Export in other languages is a
+              premium feature.
             </p>
           </div>
         </div>
