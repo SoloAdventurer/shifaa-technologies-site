@@ -1,7 +1,7 @@
 export default function Hero() {
   return (
     <section className="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen flex items-center">
-      <div className="max-w-7xl mx-auto px-6 py-20">
+      <div className="max-w-7xl mx-auto px-6 py-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Content */}
           <div className="space-y-8">
@@ -18,8 +18,8 @@ export default function Hero() {
               </p>
             </div>
 
-            {/* Key Stats */}
-            <div className="grid grid-cols-2 gap-6 pt-8">
+            {/* Key Stats
+            <div className="grid grid-cols-4 pt-4">
               <div className="text-center">
                 <div className="text-3xl font-bold text-blue-600 mb-2">
                   100%
@@ -32,7 +32,7 @@ export default function Hero() {
                 </div>
                 <div className="text-gray-600 text-sm">Native Support</div>
               </div>
-            </div>
+            </div> */}
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 pt-6">
