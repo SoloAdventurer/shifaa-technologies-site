@@ -43,6 +43,11 @@ export default function Home() {
               link="#"
               primaryProduct={false}
             />
+            <p className=" text-sm text-yellow-700 bg-yellow-100 p-3 rounded-lg">
+              <strong>Beta Disclaimer:</strong> This is a trial version for
+              feedback. Please use with caution and maintain external backups of
+              all critical data.
+            </p>
           </div>
         </div>
       </section>

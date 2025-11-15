@@ -64,6 +64,11 @@ export default function Hero() {
                 Learn More
               </a>
             </div>
+            <p className="text-sm text-yellow-700 bg-yellow-100 p-2 rounded-lg">
+              <strong>Beta Disclaimer:</strong> This is a trial version for
+              feedback. Please use with caution and maintain external backups of
+              all critical data.
+            </p>
           </div>
 
           {/* Right Visual - 3yadti Illustration */}
