@@ -76,14 +76,14 @@ export default function Header() {
           <div className="mt-4 pb-4 space-y-4">
             <Link
               href="/about"
-              className="block text-gray-600"
+              className="block text-gray-600 hover:text-blue-500"
               onClick={closeMobileMenu}
             >
               About
             </Link>
             <Link
               href="/contact"
-              className="block text-gray-600"
+              className="block text-gray-600 hover:text-blue-500"
               onClick={closeMobileMenu}
             >
               Contact
