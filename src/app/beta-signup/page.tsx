@@ -18,7 +18,7 @@ export default function BetaSignupPage() {
             Join the <span className="text-blue-600">3yadti Beta</span>
           </h1>
           <p className="mt-6 text-xl text-gray-600 leading-relaxed max-w-lg mx-auto">
-            You're one step away. As a Design Partner, your feedback will
+            You&apos;re one step away. As a Design Partner, your feedback will
             directly shape the future of healthcare tech in Egypt.
           </p>
         </div>

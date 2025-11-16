@@ -59,8 +59,12 @@ export default function BetaSignupForm() {
       } else {
         throw new Error(data.error || "Failed to send request.");
       }
-    } catch (err: any) {
-      setError(err.message);
+    } catch (err) {
+      if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError("An unknown error occurred.");
+      }
     } finally {
       setIsLoading(false);
     }
@@ -72,8 +76,8 @@ export default function BetaSignupForm() {
       <div className="text-center p-8 bg-green-50 text-green-800 rounded-lg shadow-md">
         <h3 className="text-3xl font-bold mb-4">Thank You!</h3>
         <p className="text-lg mb-6">
-          We've received your request. We'll be in touch via email shortly with
-          the next steps!
+          We&apos;ve received your request. We&apos;ll be in touch via email
+          shortly with the next steps!
         </p>
         <a
           href="https://3yadti.app"
@@ -164,7 +168,7 @@ export default function BetaSignupForm() {
           value={currentSystem}
           onChange={(e) => setCurrentSystem(e.target.value)}
           required
-          className="mt-1 block w-full px-4 py-3 rounded-lg border-black-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 bg-white"
+          className="mt-2 block w-full px-2 py-4 rounded-lg border-black-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 bg-white"
         >
           <option value="" disabled>
             Please select...
@@ -176,9 +180,6 @@ export default function BetaSignupForm() {
           <option value="nothing">Nothing / Just Starting</option>
           <option value="other">Other</option>
         </select>
-        <p className="mt-2 text-xs text-gray-500">
-          This helps us understand your needs.
-        </p>
       </div>
 
       <div className="text-gray-900">
