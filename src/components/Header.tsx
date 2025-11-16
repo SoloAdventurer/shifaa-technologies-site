@@ -88,13 +88,6 @@ export default function Header() {
             >
               Contact
             </Link>
-            <a
-              href="https://3yadti.app"
-              className="block bg-blue-600 text-white px-4 py-2 rounded-lg text-center"
-              onClick={closeMobileMenu}
-            >
-              Try 3yadti
-            </a>
           </div>
         )}
       </nav>

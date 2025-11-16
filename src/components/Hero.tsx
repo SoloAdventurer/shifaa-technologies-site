@@ -37,8 +37,7 @@ export default function Hero() {
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 pt-6">
               <a
-                href="https://3yadti.app"
-                target="_blank"
+                href="/beta-signup"
                 className="group bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-200 transform hover:scale-105 hover:shadow-xl text-center"
               >
                 Try 3yadti Beta

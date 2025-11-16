@@ -26,7 +26,7 @@ export default function Home() {
                 "Full patient profile export",
               ]}
               status="Beta Available"
-              link="https://3yadti.app"
+              link="/beta-signup"
               primaryProduct={true}
             />
 

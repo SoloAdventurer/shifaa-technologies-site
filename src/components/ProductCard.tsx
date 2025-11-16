@@ -61,7 +61,6 @@ export default function ProductCard({
         {link !== "#" ? (
           <a
             href={link}
-            target="_blank"
             className={`px-6 py-2 rounded-lg font-medium transition-colors ${
               primaryProduct
                 ? "bg-blue-600 text-white hover:bg-blue-700"

@@ -87,39 +87,6 @@ export default function About() {
           </div>
         </div>
       </section>
-
-      {/* Call to Action */}
-      <section className="bg-gray-50 py-16">
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">
-            Ready to Transform Your Practice?
-          </h2>
-          <p className="text-xl text-gray-600 mb-8">
-            Join the Egyptian doctors already using 3yadti to streamline their
-            clinics.
-          </p>
-          <a
-            href="https://3yadti.app"
-            target="_blank"
-            className="inline-flex items-center bg-blue-600 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-blue-700 transition-colors"
-          >
-            Try 3yadti Beta
-            <svg
-              className="w-5 h-5 ml-2"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M13 7l5 5m0 0l-5 5m5-5H6"
-              />
-            </svg>
-          </a>
-        </div>
-      </section>
     </div>
   );
 }

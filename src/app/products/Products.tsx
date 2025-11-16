@@ -34,7 +34,7 @@ export default function Products() {
                 "Prescription Templates",
               ]}
               status="Beta Available"
-              link="https://3yadti.app"
+              link="/beta-signup"
               primaryProduct={true}
             />
 
@@ -92,7 +92,7 @@ export default function Products() {
         </div>
       </section>
 
-      {/* Call to Action */}
+      {/* Call to Action
       <section className="bg-gray-50 py-16">
         <div className="max-w-4xl mx-auto px-6 text-center">
           <h2 className="text-3xl font-bold text-gray-900 mb-4">
@@ -104,8 +104,7 @@ export default function Products() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
-              href="https://3yadti.app"
-              target="_blank"
+              href="/beta-signup"
               className="bg-blue-600 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-blue-700 transition-colors"
             >
               Try 3yadti Beta
@@ -118,7 +117,7 @@ export default function Products() {
             </a>
           </div>
         </div>
-      </section>
+      </section> */}
     </div>
   );
 }

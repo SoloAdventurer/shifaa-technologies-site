@@ -187,7 +187,7 @@ export default function Contact() {
                   free to reach out directly.
                 </p>
                 <a
-                  href="mailto:mohamed@shifaatechnologies.com?subject=Quick Question about Shifaa Technologies"
+                  href="mailto:mohamed@shifaatechnologies.com"
                   className="inline-flex items-center bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors"
                 >
                   Send Quick Email
