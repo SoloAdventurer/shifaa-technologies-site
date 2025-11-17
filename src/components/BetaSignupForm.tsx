@@ -6,6 +6,7 @@ import {
   validateEgyptianLocation,
   validateEmail,
   validateRequiredField,
+  validateMedicalSpecialty,
   EGYPTIAN_LOCATIONS,
 } from "../services/validationService";
 
@@ -48,6 +49,9 @@ export default function BetaSignupForm() {
   const [phoneError, setPhoneError] = useState<string | null>(null);
   const [countryError, setCountryError] = useState<string | null>(null);
 
+  const [medicalSpecialty, setMedicalSpecialty] = useState("");
+  const [specialtyError, setSpecialtyError] = useState<string | null>(null);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
@@ -87,6 +91,14 @@ export default function BetaSignupForm() {
       return;
     }
 
+    // Validate medical specialty
+    const specialtyValidation = validateMedicalSpecialty(medicalSpecialty);
+    if (!specialtyValidation.isValid) {
+      setSpecialtyError(specialtyValidation.error ?? null);
+      setIsLoading(false);
+      return;
+    }
+
     try {
       const res = await fetch("/api/send-beta-request", {
         method: "POST",
@@ -97,6 +109,7 @@ export default function BetaSignupForm() {
           country,
           email,
           clinicName,
+          medicalSpecialty,
           currentSystem,
         }),
       });
@@ -109,11 +122,15 @@ export default function BetaSignupForm() {
 
       if (data.success) {
         setIsSubmitted(true);
+
+        window.scrollTo({ top: 0, behavior: "smooth" });
+
         setName("");
         setEmail("");
         setPhone("");
         setCountry("");
         setClinicName("");
+        setMedicalSpecialty("");
         setCurrentSystem("");
       } else {
         throw new Error(data.error || "Failed to send request.");
@@ -264,6 +281,33 @@ export default function BetaSignupForm() {
               <p className="mt-1 text-sm text-red-600">{countryError}</p>
             )}
           </div>
+        </div>
+
+        <div className="text-gray-900">
+          <label
+            htmlFor="medicalSpecialty"
+            className="block text-sm font-medium text-gray-700"
+          >
+            Medical Specialty / Profession (Optional)
+          </label>
+          <input
+            type="text"
+            id="medicalSpecialty"
+            value={medicalSpecialty}
+            onChange={(e) => {
+              setMedicalSpecialty(e.target.value);
+              setSpecialtyError(null);
+            }}
+            className={`mt-1 block w-full px-4 py-3 rounded-lg shadow-sm focus:border-blue-500 focus:ring-blue-500 bg-white ${
+              specialtyError
+                ? "border-2 border-red-500"
+                : "border border-gray-300"
+            }`}
+            placeholder="e.g., General Practitioner, Pediatrician, Dentist"
+          />
+          {specialtyError && (
+            <p className="mt-1 text-sm text-red-600">{specialtyError}</p>
+          )}
         </div>
 
         <div className="text-gray-900">

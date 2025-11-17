@@ -6,7 +6,15 @@ export async function POST(request: Request) {
     // 1. Parse the form data
     const body = await request.json();
     // Destructure new optional fields: phone and country
-    const { name, email, phone, country, clinicName, currentSystem } = body;
+    const {
+      name,
+      email,
+      phone,
+      country,
+      clinicName,
+      currentSystem,
+      medicalSpecialty,
+    } = body;
 
     // 2. Get credentials from Vercel Environment Variables
     const { ZOHO_EMAIL, ZOHO_APP_PASSWORD } = process.env;
@@ -54,6 +62,7 @@ export async function POST(request: Request) {
         Email: ${email}
         Phone: ${phone || "Not provided"}
         Country/Nationality: ${country || "Not provided"}
+        Medical Speciality: ${medicalSpecialty || "Not provided"}
         Clinic: ${clinicName || "Not provided"}
         Current System: ${currentSystem}
       `,
@@ -68,6 +77,9 @@ export async function POST(request: Request) {
             <p><strong>Country/Nationality:</strong> ${
               country || "Not provided"
             }</p>
+            <p><strong>Medical Speciality/Profession</strong> ${
+              medicalSpecialty || "Not provided"
+            }
             <p><strong>Clinic:</strong> ${clinicName || "Not provided"}</p>
             <p><strong>Current System:</strong> ${currentSystem}</p>
         </div>

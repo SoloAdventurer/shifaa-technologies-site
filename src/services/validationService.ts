@@ -133,3 +133,41 @@ export function validateRequiredField(
 
   return { isValid: true };
 }
+
+/**
+ * Validates medical specialty/profession
+ */
+export function validateMedicalSpecialty(specialty: string): ValidationResult {
+  if (!specialty || specialty.trim() === "") {
+    return { isValid: true }; // Optional field
+  }
+
+  const trimmedSpecialty = specialty.trim();
+
+  // Minimum length check
+  if (trimmedSpecialty.length < 3) {
+    return {
+      isValid: false,
+      error: "Medical specialty must be at least 3 characters",
+    };
+  }
+
+  // Maximum length check
+  if (trimmedSpecialty.length > 100) {
+    return {
+      isValid: false,
+      error: "Medical specialty must be less than 100 characters",
+    };
+  }
+
+  // Check for valid characters (letters, spaces, hyphens, Arabic characters)
+  const validSpecialtyRegex = /^[\p{L}\s\-\/&]+$/u;
+  if (!validSpecialtyRegex.test(trimmedSpecialty)) {
+    return {
+      isValid: false,
+      error: "Please enter a valid medical specialty (letters only)",
+    };
+  }
+
+  return { isValid: true };
+}
