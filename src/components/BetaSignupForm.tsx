@@ -1,19 +1,12 @@
 "use client";
 
-import { useState } from "react";
-import {
-  validateEgyptianPhone,
-  validateEgyptianLocation,
-  validateEmail,
-  validateRequiredField,
-  validateMedicalSpecialty,
-  EGYPTIAN_LOCATIONS,
-} from "../services/validationService";
+import { useTranslations, useLocale } from "next-intl";
+import { EGYPTIAN_LOCATIONS } from "../services/validationService";
+import { useBetaSignupForm } from "@/app/hooks/useBetaSignupForm";
 
-// Simple loading spinner component
 const LoadingSpinner = () => (
   <svg
-    className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+    className="animate-spin -ml-1 mr-3 rtl:ml-3 rtl:mr-0 h-5 w-5 text-white"
     xmlns="http://www.w3.org/2000/svg"
     fill="none"
     viewBox="0 0 24 24"
@@ -35,211 +28,107 @@ const LoadingSpinner = () => (
 );
 
 export default function BetaSignupForm() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [clinicName, setClinicName] = useState("");
-  const [phone, setPhone] = useState("");
-  const [country, setCountry] = useState("");
-  const [currentSystem, setCurrentSystem] = useState("");
+  const {
+    formData,
+    errors,
+    isLoading,
+    isSubmitted,
+    updateField,
+    handleSubmit,
+  } = useBetaSignupForm();
 
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  const t = useTranslations("BetaSignupForm");
+  const locale = useLocale();
+  const isRtl = locale === "ar";
 
-  const [phoneError, setPhoneError] = useState<string | null>(null);
-  const [countryError, setCountryError] = useState<string | null>(null);
-
-  const [medicalSpecialty, setMedicalSpecialty] = useState("");
-  const [specialtyError, setSpecialtyError] = useState<string | null>(null);
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsLoading(true);
-    setError(null);
-    setPhoneError(null);
-    setCountryError(null);
-
-    // Validate name
-    const nameValidation = validateRequiredField(name, "Full name");
-    if (!nameValidation.isValid) {
-      setError(nameValidation.error ?? null);
-      setIsLoading(false);
-      return;
-    }
-
-    // Validate email
-    const emailValidation = validateEmail(email);
-    if (!emailValidation.isValid) {
-      setError(emailValidation.error ?? null);
-      setIsLoading(false);
-      return;
-    }
-
-    // Validate phone number (Egyptian)
-    const phoneValidation = await validateEgyptianPhone(phone);
-    if (!phoneValidation.isValid) {
-      setPhoneError(phoneValidation.error ?? null);
-      setIsLoading(false);
-      return;
-    }
-
-    // Validate country/city (Egyptian)
-    const locationValidation = validateEgyptianLocation(country);
-    if (!locationValidation.isValid) {
-      setCountryError(locationValidation.error ?? null);
-      setIsLoading(false);
-      return;
-    }
-
-    // Validate medical specialty
-    const specialtyValidation = validateMedicalSpecialty(medicalSpecialty);
-    if (!specialtyValidation.isValid) {
-      setSpecialtyError(specialtyValidation.error ?? null);
-      setIsLoading(false);
-      return;
-    }
-
-    try {
-      const res = await fetch("/api/send-beta-request", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name,
-          phone,
-          country,
-          email,
-          clinicName,
-          medicalSpecialty,
-          currentSystem,
-        }),
-      });
-
-      if (!res.ok) {
-        throw new Error("Something went wrong. Please try again.");
-      }
-
-      const data = await res.json();
-
-      if (data.success) {
-        setIsSubmitted(true);
-
-        window.scrollTo({ top: 0, behavior: "smooth" });
-
-        setName("");
-        setEmail("");
-        setPhone("");
-        setCountry("");
-        setClinicName("");
-        setMedicalSpecialty("");
-        setCurrentSystem("");
-      } else {
-        throw new Error(data.error || "Failed to send request.");
-      }
-    } catch (err) {
-      if (err instanceof Error) {
-        setError(err.message);
-      } else {
-        setError("An unknown error occurred.");
-      }
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  // This is the "Thank You" message that replaces the form on success
+  // Thank You message
   if (isSubmitted) {
     return (
       <div className="text-center p-8 bg-green-50 text-green-800 rounded-lg shadow-md">
-        <h3 className="text-3xl font-bold mb-4">Thank You!</h3>
-        <p className="text-lg mb-6">
-          We&apos;ve received your request. We&apos;ll be in touch via email
-          shortly with the next steps!
-        </p>
+        <h3 className="text-3xl font-bold mb-4">{t("successTitle")}</h3>
+        <p className="text-lg mb-6">{t("successMessage")}</p>
         <a
           href="https://3yadti.app"
           target="_blank"
           className="inline-block bg-blue-600 text-white px-8 py-3 rounded-xl font-semibold text-lg hover:bg-blue-700 transition-colors"
         >
-          Start Using 3yadti Beta Now
+          {t("successButton")}
         </a>
-        <p className="text-sm mt-4">
-          Remember to check your spam folder just in case.
-        </p>
+        <p className="text-sm mt-4">{t("spamNote")}</p>
       </div>
     );
   }
 
-  // This is the form
+  // Form
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
       {/* Form Error Message */}
-      {error && (
+      {errors.general && (
         <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-lg">
-          <p>{error}</p>
+          <p>{errors.general || t("generalError")}</p>
         </div>
       )}
       <div className="space-y-8">
-        {/* Name (Required) and Phone(Optional)}*/}
+        {/* Name */}
         <div className="text-gray-900">
           <label
             htmlFor="name"
             className="block text-sm font-medium text-gray-700"
           >
-            Full Name
+            {t("labels.fullName")}
           </label>
           <input
             type="text"
             id="name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
+            value={formData.name}
+            onChange={(e) => updateField("name", e.target.value)}
             required
             className="mt-1 mb-6 block w-full px-4 py-3 rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
-            placeholder="Dr. Ahmed Hassan"
+            placeholder={t("placeholders.name")}
           />
 
+          {/* Phone */}
           <div className="text-gray-900">
             <label
               htmlFor="phone"
               className="block text-sm font-medium text-gray-700"
             >
-              Phone / WhatsApp Number (Optional, Egypt numbers only)
+              {t("labels.phone")}
             </label>
             <input
               type="tel"
               id="phone"
-              value={phone}
-              onChange={(e) => {
-                setPhone(e.target.value);
-                setPhoneError(null);
-              }}
+              value={formData.phone}
+              onChange={(e) => updateField("phone", e.target.value)}
               className={`mt-2 block w-full px-2 py-4 rounded-lg shadow-sm focus:border-blue-500 focus:ring-blue-500 bg-white ${
-                phoneError ? "border-red-500" : "border-black-300"
+                errors.phone ? "border-red-500" : "border-black-300"
               }`}
-              placeholder="e.g., +20 109 252 3277"
+              placeholder={t("placeholders.phone")}
+              dir="ltr" // Phone numbers usually better left LTR
             />
-            {phoneError && (
-              <p className="mt-1 text-sm text-red-600">{phoneError}</p>
+            {errors.phone && (
+              <p className="mt-1 text-sm text-red-600">{errors.phone}</p>
             )}
           </div>
         </div>
 
-        {/* Email and Country (Optional) */}
+        {/* Email and Country */}
         <div className="grid sm:grid-cols-2 gap-6 text-gray-800">
           <div>
             <label
               htmlFor="email"
               className="block text-sm font-medium text-gray-700"
             >
-              Your Email
+              {t("labels.email")}
             </label>
             <input
               type="email"
               id="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              value={formData.email}
+              onChange={(e) => updateField("email", e.target.value)}
               required
               className="mt-1 block w-full px-2 py-4 rounded-lg border-black-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 bg-white"
-              placeholder="your.email@example.com"
+              placeholder={t("placeholders.email")}
             />
           </div>
 
@@ -248,119 +137,126 @@ export default function BetaSignupForm() {
               htmlFor="country"
               className="block text-sm font-medium text-gray-700"
             >
-              Governorate / City (Optional)
+              {t("labels.location")}
             </label>
             <select
               id="country"
-              value={country}
-              onChange={(e) => {
-                setCountry(e.target.value);
-                setCountryError(null);
-              }}
-              className={`mt-1 block w-full px-4 py-3 rounded-lg shadow-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 bg-white transition-all duration-200 appearance-none cursor-pointer ${
-                countryError
+              value={formData.country}
+              onChange={(e) => updateField("country", e.target.value)}
+              className={`required mt-1 block w-full px-4 py-3 rounded-lg shadow-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 bg-white transition-all duration-200 appearance-none cursor-pointer ${
+                errors.country
                   ? "border-2 border-red-500"
                   : "border border-gray-300 hover:border-gray-400"
               }`}
               style={{
                 backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e")`,
-                backgroundPosition: "right 0.5rem center",
+                backgroundPosition: isRtl
+                  ? "left 0.5rem center"
+                  : "right 0.5rem center",
                 backgroundRepeat: "no-repeat",
                 backgroundSize: "1.5em 1.5em",
-                paddingRight: "2.5rem",
+                paddingRight: isRtl ? "1rem" : "2.5rem",
+                paddingLeft: isRtl ? "2.5rem" : "1rem",
               }}
             >
-              <option value="">Select your location...</option>
+              <option value="">{t("labels.locationPlaceholder")}</option>
+              {/* Note: EGYPTIAN_LOCATIONS labels might need to be translated in the source file or mapped here if they are static keys */}
               {EGYPTIAN_LOCATIONS.map((location) => (
                 <option key={location.value} value={location.value}>
                   {location.label}
                 </option>
               ))}
             </select>
-            {countryError && (
-              <p className="mt-1 text-sm text-red-600">{countryError}</p>
+            {errors.country && (
+              <p className="mt-1 text-sm text-red-600">{errors.country}</p>
             )}
           </div>
         </div>
 
+        {/* Medical Specialty */}
         <div className="text-gray-900">
           <label
             htmlFor="medicalSpecialty"
             className="block text-sm font-medium text-gray-700"
           >
-            Medical Specialty / Profession (Optional)
+            {t("labels.specialty")}
           </label>
           <input
             type="text"
             id="medicalSpecialty"
-            value={medicalSpecialty}
-            onChange={(e) => {
-              setMedicalSpecialty(e.target.value);
-              setSpecialtyError(null);
-            }}
+            value={formData.medicalSpecialty}
+            onChange={(e) => updateField("medicalSpecialty", e.target.value)}
             className={`mt-1 block w-full px-4 py-3 rounded-lg shadow-sm focus:border-blue-500 focus:ring-blue-500 bg-white ${
-              specialtyError
+              errors.specialty
                 ? "border-2 border-red-500"
                 : "border border-gray-300"
             }`}
-            placeholder="e.g., General Practitioner, Pediatrician, Dentist"
+            placeholder={t("placeholders.specialty")}
           />
-          {specialtyError && (
-            <p className="mt-1 text-sm text-red-600">{specialtyError}</p>
+          {errors.specialty && (
+            <p className="mt-1 text-sm text-red-600">{errors.specialty}</p>
           )}
         </div>
 
+        {/* Clinic Name */}
         <div className="text-gray-900">
           <label
             htmlFor="clinicName"
             className="block text-sm font-medium text-gray-700"
           >
-            Clinic Name (Optional)
+            {t("labels.clinicName")}
           </label>
           <input
             type="text"
             id="clinicName"
-            value={clinicName}
-            onChange={(e) => setClinicName(e.target.value)}
+            value={formData.clinicName}
+            onChange={(e) => updateField("clinicName", e.target.value)}
             className="mt-1 block w-full px-4 py-3 rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
-            placeholder="Shifaa Clinic"
+            placeholder={t("placeholders.clinicName")}
           />
         </div>
 
+        {/* Current System */}
         <div className="text-gray-900">
           <label
             htmlFor="currentSystem"
             className="block text-sm font-medium text-gray-700"
           >
-            What do you currently use to manage your clinic?
+            {t("labels.currentSystem")}
           </label>
           <select
             id="currentSystem"
-            value={currentSystem}
-            onChange={(e) => setCurrentSystem(e.target.value)}
+            value={formData.currentSystem}
+            onChange={(e) => updateField("currentSystem", e.target.value)}
             required
-            className="mt-2 block w-full px-4 py-3 rounded-lg border border-grey-300 shadow-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 bg-white transition-all duration-200 appearance-none cursor-pointer hover:border-gray-400"
+            className="mt-2  border border-gray-300 hover:border-gray-400 block w-full px-4 py-3 rounded-lg  shadow-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 bg-white transition-all duration-200 appearance-none cursor-pointer hover:border-gray-400"
             style={{
               backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e")`,
-              backgroundPosition: "right 0.5rem center",
+              backgroundPosition: isRtl
+                ? "left 0.5rem center"
+                : "right 0.5rem center",
               backgroundRepeat: "no-repeat",
               backgroundSize: "1.5em 1.5em",
-              paddingRight: "2.5rem",
+              paddingRight: isRtl ? "1rem" : "2.5rem",
+              paddingLeft: isRtl ? "2.5rem" : "1rem",
             }}
           >
             <option value="" disabled>
-              Please select...
+              {t("labels.currentSystemPlaceholder")}
             </option>
-            <option value="paper">Paper Files</option>
-            <option value="excel">Excel / Google Sheets</option>
-            <option value="old_software">Old Desktop Software</option>
-            <option value="other_saas">Another Online Software</option>
-            <option value="nothing">Nothing / Just Starting</option>
-            <option value="other">Other</option>
+            <option value="paper">{t("systemOptions.paper")}</option>
+            <option value="excel">{t("systemOptions.excel")}</option>
+            <option value="old_software">
+              {t("systemOptions.old_software")}
+            </option>
+            <option value="other_saas">{t("systemOptions.other_saas")}</option>
+            <option value="nothing">{t("systemOptions.nothing")}</option>
+            <option value="other">{t("systemOptions.other")}</option>
           </select>
         </div>
       </div>
 
+      {/* Submit Button */}
       <div className="text-gray-900">
         <button
           type="submit"
@@ -370,17 +266,14 @@ export default function BetaSignupForm() {
           {isLoading ? (
             <>
               <LoadingSpinner />
-              Submitting...
+              {t("submitting")}
             </>
           ) : (
-            "Request Beta Access"
+            t("submit")
           )}
         </button>
       </div>
-      <p className="text-xs text-gray-500 text-center">
-        By submitting, you agree to be contacted by our team for feedback as
-        part of the Design Partner Program.
-      </p>
+      <p className="text-xs text-gray-500 text-center">{t("disclaimer")}</p>
     </form>
   );
 }

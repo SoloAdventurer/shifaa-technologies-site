@@ -1,23 +1,63 @@
 "use client";
 import { useLocale } from "next-intl";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "@/i18n/routing";
+import { useTransition, useState } from "react";
+import * as motion from "motion/react-client";
 
 export default function LanguageSwitch() {
   const locale = useLocale();
   const router = useRouter();
+  const pathname = usePathname();
+  const [isPending, startTransition] = useTransition();
+  const [animatingLocale, setAnimatingLocale] = useState(locale);
 
   const toggleLanguage = () => {
     const newLocale = locale === "en" ? "ar" : "en";
-    router.push(`/${newLocale}`);
+
+    // Update animation state immediately for smooth visual feedback
+    setAnimatingLocale(newLocale);
+
+    // Delay the actual route change to let animation complete
+    setTimeout(() => {
+      startTransition(() => {
+        router.replace(pathname, { locale: newLocale });
+      });
+    }, 300); // Match animation duration
   };
 
   return (
     <button
       onClick={toggleLanguage}
-      className="flex items-center space-x-2 px-3 py-2 rounded-lg bg-gray-100 hover:bg-gray-200 transition-colors"
+      disabled={isPending}
+      className="relative flex bg-gray-100 rounded-full p-1 w-40"
+      style={{
+        justifyContent: animatingLocale === "ar" ? "flex-start" : "flex-end",
+      }}
     >
-      <span className="text-sm font-medium">
-        {locale === "en" ? "العربية" : "English"}
+      <motion.div
+        className="absolute inset-y-1 w-[calc(50%-4px)] bg-blue-600 rounded-full"
+        layout
+        transition={{
+          type: "spring",
+          visualDuration: 0.3,
+          bounce: 0.2,
+        }}
+      />
+
+      <span
+        className={`relative z-10 flex-1 px-3 py-2 text-sm font-medium transition-colors ${
+          animatingLocale === "ar" ? "text-white" : "text-gray-700"
+        }`}
+      >
+        العربية
+      </span>
+
+      <span
+        className={`relative z-10 flex-1 px-3 py-2 text-sm font-medium transition-colors ${
+          animatingLocale === "en" ? "text-white" : "text-gray-700"
+        }`}
+      >
+        EN
       </span>
     </button>
   );

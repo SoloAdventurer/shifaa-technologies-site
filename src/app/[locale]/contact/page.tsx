@@ -1,14 +1,18 @@
+import { useTranslations } from "next-intl";
+
 export default function Contact() {
+  const t = useTranslations("contact");
+
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-blue-50 to-indigo-100 py-20">
         <div className="max-w-4xl mx-auto px-6 text-center">
           <h1 className="text-5xl font-bold text-gray-900 mb-6">
-            Get in Touch
+            {t("hero.title")}
           </h1>
           <p className="text-xl text-gray-600 leading-relaxed">
-            Ready to transform your healthcare practice? {"Let's"} talk.
+            {t("hero.subtitle")}
           </p>
         </div>
       </section>
@@ -21,13 +25,10 @@ export default function Contact() {
             <div className="space-y-8">
               <div>
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                  Let us Build Something Great
+                  {t("main.title")}
                 </h2>
                 <p className="text-gray-600 mb-8 leading-relaxed">
-                  Whether you are a doctor interested in 3yadti, a healthcare
-                  institution looking for custom solutions, or an investor
-                  interested in Egyptian healthcare technology, I would love to
-                  hear from you.
+                  {t("main.description")}
                 </p>
               </div>
 
@@ -51,9 +52,9 @@ export default function Contact() {
                   </div>
                   <div>
                     <h3 className="text-xl font-bold text-gray-900">
-                      Mohamed Kotb
+                      {t("founder.name")}
                     </h3>
-                    <p className="text-gray-600">Founder & CEO</p>
+                    <p className="text-gray-600">{t("founder.title")}</p>
                   </div>
                 </div>
 
@@ -100,7 +101,9 @@ export default function Contact() {
                         d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
                       />
                     </svg>
-                    <span className="text-gray-600">Cairo, Egypt</span>
+                    <span className="text-gray-600">
+                      {t("founder.location")}
+                    </span>
                   </div>
                 </div>
               </div>
@@ -120,7 +123,7 @@ export default function Contact() {
                     />
                   </svg>
                   <span className="text-green-800 font-medium text-sm">
-                    Usually responds within 24 hours
+                    {t("founder.responseTime")}
                   </span>
                 </div>
               </div>
@@ -130,48 +133,43 @@ export default function Contact() {
             <div className="space-y-8">
               <div>
                 <h3 className="text-2xl font-bold text-gray-900 mb-6">
-                  What to Include in Your Message
+                  {t("guidelines.title")}
                 </h3>
 
                 <div className="space-y-6">
                   <div className="border-l-4 border-blue-600 pl-6">
                     <h4 className="font-semibold text-gray-900 mb-2">
-                      For Doctors
+                      {t("guidelines.doctors.title")}
                     </h4>
                     <p className="text-gray-600 text-sm">
-                      Tell me about your practice, current challenges with
-                      software, and what features would make your daily work
-                      easier.
+                      {t("guidelines.doctors.description")}
                     </p>
                   </div>
 
                   <div className="border-l-4 border-green-600 pl-6">
                     <h4 className="font-semibold text-gray-900 mb-2">
-                      For Healthcare Institutions
+                      {t("guidelines.institutions.title")}
                     </h4>
                     <p className="text-gray-600 text-sm">
-                      Describe your organization size, current systems, and
-                      specific requirements for custom healthcare solutions.
+                      {t("guidelines.institutions.description")}
                     </p>
                   </div>
 
                   <div className="border-l-4 border-purple-600 pl-6">
                     <h4 className="font-semibold text-gray-900 mb-2">
-                      For Investors & Partners
+                      {t("guidelines.investors.title")}
                     </h4>
                     <p className="text-gray-600 text-sm">
-                      Share your background, investment focus, and how you see
-                      yourself contributing to Egyptian healthcare innovation.
+                      {t("guidelines.investors.description")}
                     </p>
                   </div>
 
                   <div className="border-l-4 border-orange-600 pl-6">
                     <h4 className="font-semibold text-gray-900 mb-2">
-                      For Press & Media
+                      {t("guidelines.press.title")}
                     </h4>
                     <p className="text-gray-600 text-sm">
-                      Include your publication, story angle, and deadline. Happy
-                      to discuss our mission and products.
+                      {t("guidelines.press.description")}
                     </p>
                   </div>
                 </div>
@@ -180,17 +178,16 @@ export default function Contact() {
               {/* Quick Contact */}
               <div className="bg-blue-50 rounded-2xl p-8">
                 <h3 className="text-xl font-bold text-gray-900 mb-4">
-                  Quick Questions?
+                  {t("quickContact.title")}
                 </h3>
                 <p className="text-gray-600 mb-6">
-                  For quick questions about 3yadti or our other products, feel
-                  free to reach out directly.
+                  {t("quickContact.description")}
                 </p>
                 <a
                   href="mailto:mohamed@shifaatechnologies.com"
                   className="inline-flex items-center bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors"
                 >
-                  Send Quick Email
+                  {t("quickContact.cta")}
                   <svg
                     className="w-4 h-4 ml-2"
                     fill="none"

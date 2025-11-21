@@ -1,3 +1,5 @@
+import { useTranslations } from "next-intl";
+
 interface ProductCardProps {
   title: string;
   description: string;
@@ -15,6 +17,8 @@ export default function ProductCard({
   link,
   primaryProduct,
 }: ProductCardProps) {
+  const t = useTranslations("ProductCard");
+
   return (
     <div
       className={`bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow ${
@@ -23,7 +27,7 @@ export default function ProductCard({
     >
       {primaryProduct && (
         <div className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-600 mb-4">
-          🚀 Featured Product
+          {t("featured")}
         </div>
       )}
 
@@ -34,7 +38,7 @@ export default function ProductCard({
         {features.map((feature, index) => (
           <li key={index} className="flex items-center text-sm text-gray-700">
             <svg
-              className="w-4 h-4 text-green-500 mr-3"
+              className="w-4 h-4 text-green-500 mr-3 rtl:ml-3 rtl:mr-0"
               fill="currentColor"
               viewBox="0 0 20 20"
             >
@@ -67,14 +71,14 @@ export default function ProductCard({
                 : "bg-gray-200 text-gray-600 hover:bg-gray-300"
             }`}
           >
-            {primaryProduct ? "Try Now" : "Coming Soon"}
+            {primaryProduct ? t("tryNow") : t("comingSoon")}
           </a>
         ) : (
           <button
             disabled
             className="px-6 py-2 rounded-lg font-medium bg-gray-200 text-gray-400 cursor-not-allowed"
           >
-            Coming Soon
+            {t("comingSoon")}
           </button>
         )}
       </div>
