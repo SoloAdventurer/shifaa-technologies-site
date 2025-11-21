@@ -1,14 +1,18 @@
+import { useTranslations } from "next-intl";
+
 export default function About() {
+  const t = useTranslations("about");
+
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-blue-50 to-indigo-100 py-20">
         <div className="max-w-4xl mx-auto px-6 text-center">
           <h1 className="text-5xl font-bold text-gray-900 mb-6">
-            About Shifaa Technologies
+            {t("hero.title")}
           </h1>
           <p className="text-xl text-gray-600 leading-relaxed">
-            We are building the future of healthcare technology in Egypt.
+            {t("hero.subtitle")}
           </p>
         </div>
       </section>
@@ -18,71 +22,58 @@ export default function About() {
         <div className="max-w-4xl mx-auto px-6">
           <div className="prose prose-lg max-w-none">
             <h2 className="text-3xl font-bold text-gray-900 mb-6">
-              Our Mission
+              {t("mission.title")}
             </h2>
             <p className="text-gray-600 mb-8 text-lg leading-relaxed">
-              Healthcare in Egypt faces unique challenges: inconsistent internet
-              connectivity, language barriers in medical software, and systems
-              built for Western markets that do not fit local workflows. We are
-              here to change that.
+              {t("mission.content")}
             </p>
 
             <h2 className="text-3xl font-bold text-gray-900 mb-6">
-              What Makes Us Different
+              {t("differentiators.title")}
             </h2>
             <div className="grid md:grid-cols-2 gap-8 mb-12">
               <div className="space-y-4">
                 <h3 className="text-xl font-semibold text-gray-900">
-                  Offline-First
+                  {t("differentiators.offlineFirst.title")}
                 </h3>
                 <p className="text-gray-600">
-                  Our solutions work perfectly without internet. No more lost
-                  data or frustrated doctors when connectivity fails.
+                  {t("differentiators.offlineFirst.description")}
                 </p>
               </div>
               <div className="space-y-4">
                 <h3 className="text-xl font-semibold text-gray-900">
-                  Arabic Native
+                  {t("differentiators.arabicNative.title")}
                 </h3>
                 <p className="text-gray-600">
-                  Built from the ground up with Arabic support, not as an
-                  afterthought. Natural RTL support and culturally appropriate
-                  design.
+                  {t("differentiators.arabicNative.description")}
                 </p>
               </div>
               <div className="space-y-4">
                 <h3 className="text-xl font-semibold text-gray-900">
-                  Egypt-Focused
+                  {t("differentiators.egyptFocused.title")}
                 </h3>
                 <p className="text-gray-600">
-                  Designed specifically for Egyptian healthcare workflows,
-                  regulations, and the real challenges doctors face every day.
+                  {t("differentiators.egyptFocused.description")}
                 </p>
               </div>
               <div className="space-y-4">
                 <h3 className="text-xl font-semibold text-gray-900">
-                  Doctor-Driven
+                  {t("differentiators.doctorDriven.title")}
                 </h3>
                 <p className="text-gray-600">
-                  Built by listening to real Egyptian doctors and understanding
-                  their actual needs, not what we think they need.
+                  {t("differentiators.doctorDriven.description")}
                 </p>
               </div>
             </div>
 
-            <h2 className="text-3xl font-bold text-gray-900 mb-6">Our Story</h2>
+            <h2 className="text-3xl font-bold text-gray-900 mb-6">
+              {t("story.title")}
+            </h2>
             <p className="text-gray-600 mb-6 text-lg leading-relaxed">
-              Shifaa Technologies was founded to solve a simple problem:
-              existing healthcare software does not work well in Egypt. Whether
-              it is language barriers, connectivity issues, or workflows that do
-              not match how Egyptian clinics actually operate, doctors were
-              struggling with tools that made their jobs harder, not easier.
+              {t("story.paragraph1")}
             </p>
             <p className="text-gray-600 text-lg leading-relaxed">
-              Our first product, 3yadti, is a clinic management system that
-              works 100% offline, supports Arabic natively, and is designed
-              specifically for Egyptian general practitioners. It is currently
-              in beta and being used by doctors across Egypt.
+              {t("story.paragraph2")}
             </p>
           </div>
         </div>

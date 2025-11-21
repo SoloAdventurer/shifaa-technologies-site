@@ -1,31 +1,29 @@
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 
 export default function Footer() {
+  const t = useTranslations("Footer");
+
   return (
     <footer className="bg-gray-900 text-white">
       <div className="max-w-7xl mx-auto px-6 py-12">
         <div className="grid md:grid-cols-4 gap-8">
           {/* Company Info */}
           <div className="space-y-4">
-            <div className="flex items-center space-x-3">
+            <div className="flex items-center space-x-3 rtl:space-x-reverse">
               <div className="w-8 h-8 rounded-lg flex items-center justify-center">
-                <img
-                  src="/shifaa-technologies.png"
-                  alt="Healthcare Innovation Built for Egypt"
-                />
+                <img src="/shifaa-technologies.png" alt="Shifaa Technologies" />
               </div>
               <span className="text-lg font-semibold">Shifaa Technologies</span>
             </div>
             <p className="text-gray-400 text-sm leading-relaxed">
-              Building innovative healthcare technology solutions for the
-              Egyptian market. Empowering doctors with smart, offline-first
-              tools.
+              {t("description")}
             </p>
           </div>
 
           {/* Products */}
           <div>
-            <h4 className="font-semibold mb-4">Products</h4>
+            <h4 className="font-semibold mb-4">{t("sections.products")}</h4>
             <ul className="space-y-2 text-gray-400 text-sm">
               <li>
                 <a
@@ -33,22 +31,22 @@ export default function Footer() {
                   target="_blank"
                   className="hover:text-white transition-colors"
                 >
-                  3yadti - Clinic Management
+                  {t("links.clinicManagement")}
                 </a>
               </li>
               <li>
                 <Link href="/" className="hover:text-white transition-colors">
-                  Hospital Management (Coming Soon)
+                  {t("links.hospitalManagement")}
                 </Link>
               </li>
               <li>
                 <Link href="/" className="hover:text-white transition-colors">
-                  Pharmacy Systems (Coming Soon)
+                  {t("links.pharmacySystems")}
                 </Link>
               </li>
               <li>
                 <Link href="/" className="hover:text-white transition-colors">
-                  Telemedicine Platform (Coming Soon)
+                  {t("links.telemedicine")}
                 </Link>
               </li>
             </ul>
@@ -56,7 +54,7 @@ export default function Footer() {
 
           {/* Resources */}
           <div>
-            <h4 className="font-semibold mb-4">Resources</h4>
+            <h4 className="font-semibold mb-4">{t("sections.resources")}</h4>
             <ul className="space-y-2 text-gray-400 text-sm">
               <li>
                 <a
@@ -64,7 +62,7 @@ export default function Footer() {
                   target="_blank"
                   className="hover:text-white transition-colors"
                 >
-                  Documentation
+                  {t("links.documentation")}
                 </a>
               </li>
               <li>
@@ -72,7 +70,7 @@ export default function Footer() {
                   href="https://shifaatechnologies.org"
                   className="hover:text-white transition-colors"
                 >
-                  Blog
+                  {t("links.blog")}
                 </Link>
               </li>
             </ul>
@@ -80,14 +78,14 @@ export default function Footer() {
 
           {/* Company */}
           <div>
-            <h4 className="font-semibold mb-4">Company</h4>
+            <h4 className="font-semibold mb-4">{t("sections.company")}</h4>
             <ul className="space-y-2 text-gray-400 text-sm">
               <li>
                 <Link
                   href="/about"
                   className="hover:text-white transition-colors"
                 >
-                  About Us
+                  {t("links.about")}
                 </Link>
               </li>
               <li>
@@ -95,7 +93,7 @@ export default function Footer() {
                   href="/contact"
                   className="hover:text-white transition-colors"
                 >
-                  Contact
+                  {t("links.contact")}
                 </Link>
               </li>
             </ul>
@@ -103,17 +101,13 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-gray-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-gray-400 text-sm">
-            © 2025 Shifaa Technologies. All rights reserved.
-          </p>
+          <p className="text-gray-400 text-sm">{t("copyright")}</p>
 
-          <div className="flex items-center space-x-4 mt-4 md:mt-0">
-            <p className="text-gray-400 text-sm">
-              Made with ❤️ in Cairo, Egypt
-            </p>
+          <div className="flex items-center gap-2 rtl:space-x-reverse mt-4 md:mt-0">
+            <p className="text-gray-400 text-sm">{t("madeWith")}</p>
 
-            {/* Social Links (Optional) */}
-            <div className="flex space-x-3">
+            {/* Social Links */}
+            <div className="flex gap-2 rtl:space-x-reverse">
               <a
                 href="https://x.com/3yadti"
                 className="text-gray-400 hover:text-white transition-colors"

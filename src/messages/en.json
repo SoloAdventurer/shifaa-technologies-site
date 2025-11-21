@@ -1,0 +1,281 @@
+{
+  "LanguageSwitcher": {
+    "label": "العربية"
+  },
+  "Header": {
+    "about": "About",
+    "contact": "Contact"
+  },
+  "Hero": {
+    "titlePart1": "Healthcare Innovation",
+    "titlePart2": "Built for Egypt",
+    "description": "We build smart, offline-first healthcare technology solutions specifically designed for Egyptian medical professionals and the unique challenges they face.",
+    "ctaBeta": "Try 3yadti Beta",
+    "ctaLearn": "Learn More",
+    "betaDisclaimerTitle": "Beta Disclaimer:",
+    "betaDisclaimerText": "This is a trial version for feedback. Please use with caution and maintain external backups of all critical data. Also write all patient data in English in case you intend to Export into PDFs. Export in other languages is a premium feature.",
+    "betaBadge": "Beta Ready!"
+  },
+  "ProductCard": {
+    "featured": "🚀 Featured Product",
+    "tryNow": "Try Now",
+    "comingSoon": "Coming Soon"
+  },
+  "BetaSignupForm": {
+    "successTitle": "Thank You!",
+    "successMessage": "We've received your request. We'll be in touch via email shortly with the next steps!",
+    "successButton": "Start Using 3yadti Beta Now",
+    "spamNote": "Remember to check your spam folder just in case.",
+    "generalError": "Something went wrong. Please try again.",
+    "labels": {
+      "fullName": "Full Name",
+      "phone": "Phone / WhatsApp Number (Optional, Egyptian numbers only)",
+      "email": "Your Email",
+      "location": "Governorate / City (Optional)",
+      "locationPlaceholder": "Select your location...",
+      "specialty": "Medical Specialty / Profession (Optional)",
+      "clinicName": "Clinic Name (Optional)",
+      "currentSystem": "What do you currently use to manage your clinic?",
+      "currentSystemPlaceholder": "Please select..."
+    },
+    "placeholders": {
+      "name": "Dr. Ahmed Hassan",
+      "phone": "e.g., +20 109 252 3277",
+      "email": "your.email@example.com",
+      "specialty": "e.g., General Practitioner, Pediatrician, Dentist",
+      "clinicName": "Shifaa Clinic"
+    },
+    "systemOptions": {
+      "paper": "Paper Files",
+      "excel": "Excel / Google Sheets",
+      "old_software": "Old Desktop Software",
+      "other_saas": "Another Online Software",
+      "nothing": "Nothing / Just Starting",
+      "other": "Other"
+    },
+    "submit": "Request Beta Access",
+    "submitting": "Submitting...",
+    "disclaimer": "By submitting, you agree to be contacted by our team for feedback as part of the Design Partner Program."
+  },
+  "Footer": {
+    "description": "Building innovative healthcare technology solutions for the Egyptian market. Empowering doctors with smart, offline-first tools.",
+    "sections": {
+      "products": "Products",
+      "resources": "Resources",
+      "company": "Company"
+    },
+    "links": {
+      "clinicManagement": "3yadti - Clinic Management",
+      "hospitalManagement": "Hospital Management (Coming Soon)",
+      "pharmacySystems": "Pharmacy Systems (Coming Soon)",
+      "telemedicine": "Telemedicine Platform (Coming Soon)",
+      "documentation": "Documentation",
+      "blog": "Blog",
+      "about": "About Us",
+      "contact": "Contact"
+    },
+    "copyright": "© 2025 Shifaa Technologies. All rights reserved.",
+    "madeWith": "Made with ❤️ in Cairo, Egypt"
+  },
+  "common": {
+    "nav": {
+      "home": "Home",
+      "about": "About",
+      "products": "Products",
+      "contact": "Contact",
+      "betaSignup": "Beta Signup"
+    },
+    "cta": {
+      "getStarted": "Get Started",
+      "learnMore": "Learn More",
+      "contactUs": "Contact Us",
+      "tryBeta": "Try Beta"
+    },
+    "status": {
+      "betaAvailable": "Beta Available",
+      "inDevelopment": "In Development",
+      "planningPhase": "Planning Phase",
+      "researchPhase": "Research Phase"
+    }
+  },
+  "home": {
+    "hero": {
+      "title": "Clinic Management System Built for Egyptian Doctors",
+      "subtitle": "Works offline, designed specifically for rural clinics",
+      "description": "3yadti is a clinic management system that works 100% offline, with full Arabic support, designed specifically for the needs of doctors in Egypt.",
+      "cta": "Start Free Beta",
+      "secondaryCta": "See How It Works"
+    }
+  },
+  "about": {
+    "hero": {
+      "title": "About Shifaa Technologies",
+      "subtitle": "We are building the future of healthcare technology in Egypt."
+    },
+    "mission": {
+      "title": "Our Mission",
+      "content": "Healthcare in Egypt faces unique challenges: inconsistent internet connectivity, language barriers in medical software, and systems built for Western markets that do not fit local workflows. We are here to change that."
+    },
+    "differentiators": {
+      "title": "What Makes Us Different",
+      "offlineFirst": {
+        "title": "Offline-First",
+        "description": "Our solutions work perfectly without internet. No more lost data or frustrated doctors when connectivity fails."
+      },
+      "arabicNative": {
+        "title": "Arabic Native",
+        "description": "Built from the ground up with Arabic support, not as an afterthought. Natural RTL support and culturally appropriate design."
+      },
+      "egyptFocused": {
+        "title": "Egypt-Focused",
+        "description": "Designed specifically for Egyptian healthcare workflows, regulations, and the real challenges doctors face every day."
+      },
+      "doctorDriven": {
+        "title": "Doctor-Driven",
+        "description": "Built by listening to real Egyptian doctors and understanding their actual needs, not what we think they need."
+      }
+    },
+    "story": {
+      "title": "Our Story",
+      "paragraph1": "Shifaa Technologies was founded to solve a simple problem: existing healthcare software does not work well in Egypt. Whether it is language barriers, connectivity issues, or workflows that do not match how Egyptian clinics actually operate, doctors were struggling with tools that made their jobs harder, not easier.",
+      "paragraph2": "Our first product, 3yadti, is a clinic management system that works 100% offline, supports Arabic natively, and is designed specifically for Egyptian general practitioners. It is currently in beta and being used by doctors across Egypt."
+    }
+  },
+  "products": {
+    "hero": {
+      "title": "Our Healthcare Solutions",
+      "subtitle": "Innovative software designed specifically for Egyptian medical professionals."
+    },
+    "threeyati": {
+      "title": "3yadti",
+      "description": "Comprehensive offline-first clinic management system designed for Egyptian general practitioners. Manage patients, appointments, and medical records without internet dependency.",
+      "features": {
+        "offline": "100% Offline Operation",
+        "bilingual": "Arabic & English Support",
+        "smartSearch": "Smart Medical Search",
+        "records": "Patient Records Management",
+        "scheduling": "Appointment Scheduling",
+        "analytics": "Analytics Dashboard",
+        "export": "PDF, CSV, JSON Export",
+        "templates": "Prescription Templates"
+      }
+    },
+    "hospital": {
+      "title": "Hospital Management Suite",
+      "description": "Complete hospital management solution for larger healthcare facilities. Multi-department coordination, staff management, and advanced reporting.",
+      "features": {
+        "multiDept": "Multi-Department Management",
+        "staffScheduling": "Staff Scheduling",
+        "inventory": "Inventory Management",
+        "financial": "Financial Reporting",
+        "patientFlow": "Patient Flow Optimization",
+        "bedManagement": "Bed Management",
+        "pharmacy": "Pharmacy Integration"
+      }
+    },
+    "pharmacy": {
+      "title": "Pharmacy Management System",
+      "description": "Streamlined pharmacy operations with inventory tracking, prescription management, and automated reordering for Egyptian pharmacies.",
+      "features": {
+        "inventoryTracking": "Inventory Tracking",
+        "prescriptionMgmt": "Prescription Management",
+        "autoReorder": "Automated Reordering",
+        "salesAnalytics": "Sales Analytics",
+        "expiryMonitoring": "Expiry Date Monitoring",
+        "supplierMgmt": "Supplier Management"
+      }
+    },
+    "telemedicine": {
+      "title": "Telemedicine Platform",
+      "description": "Secure telemedicine solution connecting Egyptian patients with doctors, designed for low-bandwidth environments.",
+      "features": {
+        "lowBandwidth": "Low-Bandwidth Video Calls",
+        "secureMessaging": "Secure Messaging",
+        "digitalPrescriptions": "Digital Prescriptions",
+        "appointmentBooking": "Appointment Booking",
+        "patientHistory": "Patient History Access",
+        "mobileSupport": "Mobile App Support"
+      }
+    }
+  },
+  "BetaSignup": {
+    "title": "Join the",
+    "titleHighlight": "3yadti Beta",
+    "subtitle": "You're one step away. As a Design Partner, your feedback will directly shape the future of healthcare tech in Egypt.",
+    "metadata": {
+      "title": "3yadti Beta Signup | Shifaa Technologies",
+      "description": "Join the 3yadti beta and help shape the future of healthcare technology in Egypt."
+    }
+  },
+  "contact": {
+    "hero": {
+      "title": "Get in Touch",
+      "subtitle": "Ready to transform your healthcare practice? Let's talk."
+    },
+    "main": {
+      "title": "Let us Build Something Great",
+      "description": "Whether you are a doctor interested in 3yadti, a healthcare institution looking for custom solutions, or an investor interested in Egyptian healthcare technology, I would love to hear from you."
+    },
+    "founder": {
+      "name": "Mohamed Kotb",
+      "title": "Founder & CEO",
+      "location": "Cairo, Egypt",
+      "responseTime": "Usually responds within 24 hours"
+    },
+    "guidelines": {
+      "title": "What to Include in Your Message",
+      "doctors": {
+        "title": "For Doctors",
+        "description": "Tell me about your practice, current challenges with software, and what features would make your daily work easier."
+      },
+      "institutions": {
+        "title": "For Healthcare Institutions",
+        "description": "Describe your organization size, current systems, and specific requirements for custom healthcare solutions."
+      },
+      "investors": {
+        "title": "For Investors & Partners",
+        "description": "Share your background, investment focus, and how you see yourself contributing to Egyptian healthcare innovation."
+      },
+      "press": {
+        "title": "For Press & Media",
+        "description": "Include your publication, story angle, and deadline. Happy to discuss our mission and products."
+      }
+    },
+    "quickContact": {
+      "title": "Quick Questions?",
+      "description": "For quick questions about 3yadti or our other products, feel free to reach out directly.",
+      "cta": "Send Quick Email"
+    }
+  },
+  "Home": {
+    "productsTitle": "Our Healthcare Solutions",
+    "product3yadti": {
+      "title": "3yadti",
+      "description": "Offline-first clinic management system for Egyptian general practitioners",
+      "features": {
+        "offline": "100% Offline Operation",
+        "language": "Arabic & English Support",
+        "search": "Smart Medical Search",
+        "appointments": "Appointment management",
+        "analytics": "Analytics",
+        "export": "Full patient profile export"
+      },
+      "status": "Beta Available"
+    },
+    "productComingSoon": {
+      "title": "Coming Soon",
+      "description": "More healthcare innovations in development",
+      "features": {
+        "hospital": "Hospital Management",
+        "pharmacy": "Pharmacy Systems",
+        "telemedicine": "Telemedicine Platform",
+        "analytics": "Health Analytics"
+      },
+      "status": "In Development"
+    },
+    "betaDisclaimer": {
+      "title": "Beta Disclaimer:",
+      "text": "This is a trial version for feedback. Please use with caution and maintain external backups of all critical data. Also write all patient data in English in case you intend to Export into PDFs. Export in other languages is a premium feature."
+    }
+  }
+}
