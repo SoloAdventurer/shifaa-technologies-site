@@ -24,15 +24,22 @@ export default function Header() {
   }, []);
 
   return (
-    <header className="bg-white shadow-sm sticky border top-0 z-50">
-      <nav className="max-w-8xl mx-auto px-6 py-3">
-        <div className="flex items-center justify-between">
+    <header className="bg-white shadow-sm sticky border top-0 z-50 w-full">
+      <nav className="max-w-8xl mx-auto px-3 sm:px-4 py-3">
+        <div className="flex items-center justify-between gap-2">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2">
-            <div className="w-10 h-10 bg-gradient-to-br rounded-xl flex items-center justify-center">
-              <img src="/shifaa-technologies.png" alt="Shifaa Technologies" />
+          <Link
+            href="/"
+            className="flex items-center gap-1.5 sm:gap-2 min-w-0 flex-shrink"
+          >
+            <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br rounded-xl flex items-center justify-center flex-shrink-0">
+              <img
+                src="/shifaa-technologies.png"
+                alt=""
+                className="w-full h-full"
+              />
             </div>
-            <span className="text-xl font-bold text-gray-900">
+            <span className="text-base sm:text-xl font-bold text-gray-900 truncate">
               Shifaa Technologies
             </span>
           </Link>
@@ -51,9 +58,13 @@ export default function Header() {
           </div>
 
           {/* Mobile Menu Button */}
-          <div className="md:hidden flex items-center gap-4">
+          <div className="md:hidden flex items-center gap-2 flex-shrink-0">
             <LanguageSwitch />
-            <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="p-1"
+              aria-label="Toggle menu"
+            >
               <svg
                 className="w-6 h-6 text-black"
                 fill="none"

@@ -26,7 +26,7 @@ export default function ProductCard({
       }`}
     >
       {primaryProduct && (
-        <div className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-600 mb-4">
+        <div className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-blue-600 text-white mb-4">
           {t("featured")}
         </div>
       )}

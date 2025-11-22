@@ -29,6 +29,9 @@ export default function LanguageSwitch() {
     <button
       onClick={toggleLanguage}
       disabled={isPending}
+      aria-label={`Switch language to ${
+        locale === "en" ? "Arabic" : "English"
+      }`}
       className="relative flex bg-gray-100 rounded-full p-1 w-40"
       style={{
         justifyContent: animatingLocale === "ar" ? "flex-start" : "flex-end",

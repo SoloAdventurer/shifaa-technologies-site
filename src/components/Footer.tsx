@@ -12,7 +12,7 @@ export default function Footer() {
           <div className="space-y-4">
             <div className="flex items-center space-x-3 rtl:space-x-reverse">
               <div className="w-8 h-8 rounded-lg flex items-center justify-center">
-                <img src="/shifaa-technologies.png" alt="Shifaa Technologies" />
+                <img src="/shifaa-technologies.png" alt="" />
               </div>
               <span className="text-lg font-semibold">Shifaa Technologies</span>
             </div>
@@ -23,7 +23,7 @@ export default function Footer() {
 
           {/* Products */}
           <div>
-            <h4 className="font-semibold mb-4">{t("sections.products")}</h4>
+            <h3 className="font-semibold mb-4">{t("sections.products")}</h3>
             <ul className="space-y-2 text-gray-400 text-sm">
               <li>
                 <a
@@ -54,7 +54,7 @@ export default function Footer() {
 
           {/* Resources */}
           <div>
-            <h4 className="font-semibold mb-4">{t("sections.resources")}</h4>
+            <h3 className="font-semibold mb-4">{t("sections.resources")}</h3>
             <ul className="space-y-2 text-gray-400 text-sm">
               <li>
                 <a
@@ -78,7 +78,7 @@ export default function Footer() {
 
           {/* Company */}
           <div>
-            <h4 className="font-semibold mb-4">{t("sections.company")}</h4>
+            <h3 className="font-semibold mb-4">{t("sections.company")}</h3>
             <ul className="space-y-2 text-gray-400 text-sm">
               <li>
                 <Link
@@ -111,6 +111,9 @@ export default function Footer() {
               <a
                 href="https://x.com/3yadti"
                 className="text-gray-400 hover:text-white transition-colors"
+                aria-label="Follow us on X (Twitter)"
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 <svg
                   className="w-5 h-5"
@@ -123,6 +126,9 @@ export default function Footer() {
               <a
                 href="https://www.linkedin.com/company/shifaa-technologies/"
                 className="text-gray-400 hover:text-white transition-colors"
+                aria-label="Follow us on LinkedIn"
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 <svg
                   className="w-5 h-5"
