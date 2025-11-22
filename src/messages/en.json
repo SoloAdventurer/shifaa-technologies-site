@@ -6,14 +6,15 @@
     "about": "About",
     "contact": "Contact"
   },
-  "Hero": {
+   "Hero": {
     "titlePart1": "Healthcare Innovation",
     "titlePart2": "Built for Egypt",
-    "description": "We build smart, offline-first healthcare technology solutions specifically designed for Egyptian medical professionals and the unique challenges they face.",
+    "description": "We build smart, offline-first healthcare technology solutions designed for Egyptian medical professionals.",
     "ctaBeta": "Try 3yadti Beta",
     "ctaLearn": "Learn More",
     "betaDisclaimerTitle": "Beta Disclaimer:",
     "betaDisclaimerText": "This is a trial version for feedback. Please use with caution and maintain external backups of all critical data. Also write all patient data in English in case you intend to Export into PDFs. Export in other languages is a premium feature.",
+    "betaDisclaimerMobile": "Beta version - Keep backups of critical data",
     "betaBadge": "Beta Ready!"
   },
   "ProductCard": {
