@@ -1,5 +1,5 @@
 import { useTranslations } from "next-intl";
-
+import { Link } from "@/i18n/routing";
 interface ProductCardProps {
   title: string;
   description: string;
@@ -63,7 +63,7 @@ export default function ProductCard({
         </span>
 
         {link !== "#" ? (
-          <a
+          <Link
             href={link}
             className={`px-6 py-2 rounded-lg font-medium transition-colors ${
               primaryProduct
@@ -72,7 +72,7 @@ export default function ProductCard({
             }`}
           >
             {primaryProduct ? t("tryNow") : t("comingSoon")}
-          </a>
+          </Link>
         ) : (
           <button
             disabled

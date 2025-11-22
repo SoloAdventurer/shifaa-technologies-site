@@ -24,9 +24,8 @@
   },
   "BetaSignupForm": {
     "successTitle": "Thank You!",
-    "successMessage": "We've received your request. We'll be in touch via email shortly with the next steps!",
+    "successMessage": "We've received your request. We'll be in touch with you shortly!",
     "successButton": "Start Using 3yadti Beta Now",
-    "spamNote": "Remember to check your spam folder just in case.",
     "generalError": "Something went wrong. Please try again.",
     "labels": {
       "fullName": "Full Name",

@@ -1,7 +1,6 @@
 "use client";
 
 import { useTranslations, useLocale } from "next-intl";
-import { EGYPTIAN_LOCATIONS } from "../services/validationService";
 import { useBetaSignupForm } from "@/app/hooks/useBetaSignupForm";
 
 const LoadingSpinner = () => (
@@ -28,6 +27,10 @@ const LoadingSpinner = () => (
 );
 
 export default function BetaSignupForm() {
+  const t = useTranslations("BetaSignupForm");
+  const locale = useLocale();
+
+  // Use the refactored hook
   const {
     formData,
     errors,
@@ -35,63 +38,120 @@ export default function BetaSignupForm() {
     isSubmitted,
     updateField,
     handleSubmit,
-  } = useBetaSignupForm();
-
-  const t = useTranslations("BetaSignupForm");
-  const locale = useLocale();
-  const isRtl = locale === "ar";
+  } = useBetaSignupForm(locale);
 
   // Thank You message
   if (isSubmitted) {
     return (
-      <div className="text-center p-8 bg-green-50 text-green-800 rounded-lg shadow-md">
+      <div className="text-center p-8 bg-green-50 text-green-800 rounded-xl shadow-lg border-2 border-green-200">
+        <div className="mb-4">
+          <svg
+            className="w-16 h-16 text-green-500 mx-auto"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+            />
+          </svg>
+        </div>
         <h3 className="text-3xl font-bold mb-4">{t("successTitle")}</h3>
         <p className="text-lg mb-6">{t("successMessage")}</p>
         <a
           href="https://3yadti.app"
           target="_blank"
-          className="inline-block bg-blue-600 text-white px-8 py-3 rounded-xl font-semibold text-lg hover:bg-blue-700 transition-colors"
+          rel="noopener noreferrer"
+          className="inline-block bg-blue-600 text-white px-8 py-3 rounded-xl font-semibold text-lg hover:bg-blue-700 transition-all transform hover:scale-105 shadow-lg"
         >
           {t("successButton")}
         </a>
-        <p className="text-sm mt-4">{t("spamNote")}</p>
       </div>
     );
   }
 
-  // Form
+  // Minimal 2-Field Form
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
-      {/* Form Error Message */}
-      {errors.general && (
-        <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-lg">
-          <p>{errors.general || t("generalError")}</p>
+    <div className="max-w-md mx-auto">
+      <div className="bg-white rounded-2xl p-8 shadow-xl">
+        {/* Header */}
+        <div className="text-center mb-8">
+          <h2 className="text-3xl font-bold text-gray-900 mb-3">
+            {locale === "ar" ? "انضم للنسخة التجريبية" : "Join Beta Access"}
+          </h2>
+          <p className="text-gray-600">
+            {locale === "ar"
+              ? "سنتواصل معك خلال 24 ساعة"
+              : "We'll contact you within 24 hours"}
+          </p>
         </div>
-      )}
-      <div className="space-y-8">
-        {/* Name */}
-        <div className="text-gray-900">
-          <label
-            htmlFor="name"
-            className="block text-sm font-medium text-gray-700"
-          >
-            {t("labels.fullName")}
-          </label>
-          <input
-            type="text"
-            id="name"
-            value={formData.name}
-            onChange={(e) => updateField("name", e.target.value)}
-            required
-            className="mt-1 mb-6 block w-full px-4 py-3 rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
-            placeholder={t("placeholders.name")}
-          />
 
-          {/* Phone */}
-          <div className="text-gray-900">
+        <form onSubmit={handleSubmit} className="space-y-6">
+          {/* Form Error Message */}
+          {errors.general && (
+            <div className="bg-red-50 border border-red-300 text-red-700 px-4 py-3 rounded-lg flex items-start gap-2">
+              <svg
+                className="w-5 h-5 text-red-500 flex-shrink-0 mt-0.5"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
+                  clipRule="evenodd"
+                />
+              </svg>
+              <p className="text-sm">{errors.general}</p>
+            </div>
+          )}
+
+          {/* Name Field */}
+          <div>
+            <label
+              htmlFor="name"
+              className="block text-sm font-semibold text-gray-700 mb-2"
+            >
+              {t("labels.fullName")}
+            </label>
+            <input
+              type="text"
+              id="name"
+              value={formData.name}
+              onChange={(e) => updateField("name", e.target.value)}
+              required
+              className={`block w-full px-4 py-3 text-gray-900 bg-gray-50 rounded-xl shadow-sm focus:ring-2 focus:ring-opacity-50 focus:bg-white transition-all ${
+                errors.name
+                  ? "border-2 border-red-500 focus:border-red-500 focus:ring-red-500"
+                  : "border border-gray-300 focus:border-blue-500 focus:ring-blue-500"
+              }`}
+              placeholder={t("placeholders.name")}
+            />
+            {errors.name && (
+              <p className="mt-2 text-sm text-red-600 flex items-center gap-1">
+                <svg
+                  className="w-4 h-4"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+                {errors.name}
+              </p>
+            )}
+          </div>
+
+          {/* Phone/WhatsApp Field */}
+          <div>
             <label
               htmlFor="phone"
-              className="block text-sm font-medium text-gray-700"
+              className="block text-sm font-semibold text-gray-700 mb-2"
             >
               {t("labels.phone")}
             </label>
@@ -100,180 +160,107 @@ export default function BetaSignupForm() {
               id="phone"
               value={formData.phone}
               onChange={(e) => updateField("phone", e.target.value)}
-              className={`mt-2 block w-full px-2 py-4 rounded-lg shadow-sm focus:border-blue-500 focus:ring-blue-500 bg-white ${
-                errors.phone ? "border-red-500" : "border-black-300"
+              required
+              className={`block w-full px-4 py-3 text-gray-900 bg-gray-50 rounded-xl shadow-sm focus:ring-2 focus:ring-opacity-50 focus:bg-white transition-all ${
+                errors.phone
+                  ? "border-2 border-red-500 focus:border-red-500 focus:ring-red-500"
+                  : "border border-gray-300 focus:border-blue-500 focus:ring-blue-500"
               }`}
               placeholder={t("placeholders.phone")}
-              dir="ltr" // Phone numbers usually better left LTR
+              dir="ltr"
             />
             {errors.phone && (
-              <p className="mt-1 text-sm text-red-600">{errors.phone}</p>
+              <p className="mt-2 text-sm text-red-600 flex items-center gap-1">
+                <svg
+                  className="w-4 h-4"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+                {errors.phone}
+              </p>
             )}
           </div>
-        </div>
 
-        {/* Email and Country */}
-        <div className="grid sm:grid-cols-2 gap-6 text-gray-800">
-          <div>
-            <label
-              htmlFor="email"
-              className="block text-sm font-medium text-gray-700"
-            >
-              {t("labels.email")}
-            </label>
-            <input
-              type="email"
-              id="email"
-              value={formData.email}
-              onChange={(e) => updateField("email", e.target.value)}
-              required
-              className="mt-1 block w-full px-2 py-4 rounded-lg border-black-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 bg-white"
-              placeholder={t("placeholders.email")}
+          {/* Submit Button */}
+          <button
+            type="submit"
+            disabled={isLoading}
+            className="w-full flex justify-center items-center py-4 px-6 rounded-xl shadow-lg text-lg font-semibold text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300 disabled:bg-gray-400 disabled:cursor-not-allowed transition-all transform hover:scale-[1.02] active:scale-[0.98]"
+          >
+            {isLoading ? (
+              <>
+                <LoadingSpinner />
+                {t("submitting")}
+              </>
+            ) : (
+              <>
+                {t("submit")}
+                <svg
+                  className="w-5 h-5 ml-2 rtl:mr-2 rtl:ml-0 rtl:rotate-180"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M13 7l5 5m0 0l-5 5m5-5H6"
+                  />
+                </svg>
+              </>
+            )}
+          </button>
+
+          <p className="text-xs text-gray-500 text-center leading-relaxed pt-2">
+            {t("disclaimer")}
+          </p>
+        </form>
+      </div>
+
+      {/* Trust indicators below form */}
+      <div className="mt-6 space-y-2 text-sm text-gray-600 text-center">
+        <div className="flex items-center justify-center gap-2">
+          <svg
+            className="w-4 h-4 text-green-500"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+          >
+            <path
+              fillRule="evenodd"
+              d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+              clipRule="evenodd"
             />
-          </div>
-
-          <div>
-            <label
-              htmlFor="country"
-              className="block text-sm font-medium text-gray-700"
-            >
-              {t("labels.location")}
-            </label>
-            <select
-              id="country"
-              value={formData.country}
-              onChange={(e) => updateField("country", e.target.value)}
-              className={`required mt-1 block w-full px-4 py-3 rounded-lg shadow-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 bg-white transition-all duration-200 appearance-none cursor-pointer ${
-                errors.country
-                  ? "border-2 border-red-500"
-                  : "border border-gray-300 hover:border-gray-400"
-              }`}
-              style={{
-                backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e")`,
-                backgroundPosition: isRtl
-                  ? "left 0.5rem center"
-                  : "right 0.5rem center",
-                backgroundRepeat: "no-repeat",
-                backgroundSize: "1.5em 1.5em",
-                paddingRight: isRtl ? "1rem" : "2.5rem",
-                paddingLeft: isRtl ? "2.5rem" : "1rem",
-              }}
-            >
-              <option value="">{t("labels.locationPlaceholder")}</option>
-              {/* Note: EGYPTIAN_LOCATIONS labels might need to be translated in the source file or mapped here if they are static keys */}
-              {EGYPTIAN_LOCATIONS.map((location) => (
-                <option key={location.value} value={location.value}>
-                  {location.label}
-                </option>
-              ))}
-            </select>
-            {errors.country && (
-              <p className="mt-1 text-sm text-red-600">{errors.country}</p>
-            )}
-          </div>
+          </svg>
+          <span>
+            {locale === "ar"
+              ? "رد سريع خلال 24 ساعة"
+              : "Quick response within 24 hours"}
+          </span>
         </div>
-
-        {/* Medical Specialty */}
-        <div className="text-gray-900">
-          <label
-            htmlFor="medicalSpecialty"
-            className="block text-sm font-medium text-gray-700"
+        <div className="flex items-center justify-center gap-2">
+          <svg
+            className="w-4 h-4 text-green-500"
+            fill="currentColor"
+            viewBox="0 0 20 20"
           >
-            {t("labels.specialty")}
-          </label>
-          <input
-            type="text"
-            id="medicalSpecialty"
-            value={formData.medicalSpecialty}
-            onChange={(e) => updateField("medicalSpecialty", e.target.value)}
-            className={`mt-1 block w-full px-4 py-3 rounded-lg shadow-sm focus:border-blue-500 focus:ring-blue-500 bg-white ${
-              errors.specialty
-                ? "border-2 border-red-500"
-                : "border border-gray-300"
-            }`}
-            placeholder={t("placeholders.specialty")}
-          />
-          {errors.specialty && (
-            <p className="mt-1 text-sm text-red-600">{errors.specialty}</p>
-          )}
-        </div>
-
-        {/* Clinic Name */}
-        <div className="text-gray-900">
-          <label
-            htmlFor="clinicName"
-            className="block text-sm font-medium text-gray-700"
-          >
-            {t("labels.clinicName")}
-          </label>
-          <input
-            type="text"
-            id="clinicName"
-            value={formData.clinicName}
-            onChange={(e) => updateField("clinicName", e.target.value)}
-            className="mt-1 block w-full px-4 py-3 rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
-            placeholder={t("placeholders.clinicName")}
-          />
-        </div>
-
-        {/* Current System */}
-        <div className="text-gray-900">
-          <label
-            htmlFor="currentSystem"
-            className="block text-sm font-medium text-gray-700"
-          >
-            {t("labels.currentSystem")}
-          </label>
-          <select
-            id="currentSystem"
-            value={formData.currentSystem}
-            onChange={(e) => updateField("currentSystem", e.target.value)}
-            required
-            className="mt-2  border border-gray-300 hover:border-gray-400 block w-full px-4 py-3 rounded-lg  shadow-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 bg-white transition-all duration-200 appearance-none cursor-pointer hover:border-gray-400"
-            style={{
-              backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e")`,
-              backgroundPosition: isRtl
-                ? "left 0.5rem center"
-                : "right 0.5rem center",
-              backgroundRepeat: "no-repeat",
-              backgroundSize: "1.5em 1.5em",
-              paddingRight: isRtl ? "1rem" : "2.5rem",
-              paddingLeft: isRtl ? "2.5rem" : "1rem",
-            }}
-          >
-            <option value="" disabled>
-              {t("labels.currentSystemPlaceholder")}
-            </option>
-            <option value="paper">{t("systemOptions.paper")}</option>
-            <option value="excel">{t("systemOptions.excel")}</option>
-            <option value="old_software">
-              {t("systemOptions.old_software")}
-            </option>
-            <option value="other_saas">{t("systemOptions.other_saas")}</option>
-            <option value="nothing">{t("systemOptions.nothing")}</option>
-            <option value="other">{t("systemOptions.other")}</option>
-          </select>
+            <path
+              fillRule="evenodd"
+              d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+              clipRule="evenodd"
+            />
+          </svg>
+          <span>
+            {locale === "ar" ? "بدون تكاليف مقدمة" : "No upfront costs"}
+          </span>
         </div>
       </div>
-
-      {/* Submit Button */}
-      <div className="text-gray-900">
-        <button
-          type="submit"
-          disabled={isLoading}
-          className="w-full flex justify-center items-center py-4 px-6 border border-transparent rounded-xl shadow-sm text-lg font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors"
-        >
-          {isLoading ? (
-            <>
-              <LoadingSpinner />
-              {t("submitting")}
-            </>
-          ) : (
-            t("submit")
-          )}
-        </button>
-      </div>
-      <p className="text-xs text-gray-500 text-center">{t("disclaimer")}</p>
-    </form>
+    </div>
   );
 }
